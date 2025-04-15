@@ -18,6 +18,13 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
+enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
 rootProject.name = "Bipa"
 include(":app")
+include(":feature")
+include(":core")
+include(":core:network")
+include(":core:activity")
+include(":ui")
+include(":feature:main")
