@@ -20,7 +20,7 @@ dependencyResolutionManagement {
 }
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
-rootProject.name = "Bipa"
+rootProject.name = "nodelist"
 include(":app")
 include(":feature")
 include(":core")

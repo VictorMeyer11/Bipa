@@ -7,11 +7,11 @@ plugins {
 }
 
 android {
-    namespace = "com.clansoft.bipa"
+    namespace = "com.bipa.nodelist"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.clansoft.bipa"
+        applicationId = "com.bipa.nodelist"
         minSdk = 24
         targetSdk = 35
         versionCode = 1

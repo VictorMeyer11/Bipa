@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="check_out_the_100_best_connected_nodes_of_the_lightning_network">Check out the 100 best connected nodes of the lightning network!</string>
+    <string name="check_out_the_100_most_well_connected_nodes_of_the_lightning_network">Check out the 100 most well connected nodes of the lightning network!</string>
     <string name="number_of_channels">Number of channels: %1$s</string>
     <string name="first_seen_at">First seen at: %1$s</string>
     <string name="updated_at">Updated at: %1$s</string>
-    <string name="something_went_wrong">Something went wrong</string>
     <string name="pull_to_refresh">Pull to refresh</string>
+    <string name="refresh_icon">refresh icon</string>
 </resources>
