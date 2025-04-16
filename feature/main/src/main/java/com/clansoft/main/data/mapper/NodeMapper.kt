@@ -8,12 +8,12 @@ class NodeMapper @Inject constructor(
     private val cityMapper: CityMapper,
     private val countryMapper: CountryMapper
 ) {
-    fun map(nodeDto: NodeDto) : Node = Node(
+    fun map(nodeDto: NodeDto): Node = Node(
         alias = nodeDto.alias,
         capacity = nodeDto.capacity,
         channels = nodeDto.channels,
-        city = nodeDto.city?.let { cityMapper.map(it) },
-        country = nodeDto.country?.let { countryMapper.map(it) },
+        city = nodeDto.city?.let(cityMapper::map),
+        country = nodeDto.country?.let(countryMapper::map),
         firstSeen = nodeDto.firstSeen,
         publicKey = nodeDto.publicKey,
         updatedAt = nodeDto.updatedAt

@@ -14,9 +14,7 @@ class ConvertFromUnix @Inject constructor() {
         val zoneId = ZoneId.of("America/New_York")
         val instant = Instant.ofEpochSecond(unix.toLong())
 
-        if (unix < 0) {
-            return null
-        }
+        if (unix < 0) { return null }
 
         val currentTime = Instant.now().epochSecond
         val oneDayInSeconds = 86400L

@@ -10,7 +10,7 @@ class GetNodes @Inject constructor(
     suspend operator fun invoke(): Result<List<Node>> = run {
         try {
             mainRepository.getNodes()
-        } catch (e:Exception) {
+        } catch (e: Exception) {
             Result.failure(e)
         }
     }

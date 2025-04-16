@@ -73,5 +73,8 @@ dependencies {
     testImplementation(libs.mockk)
     testImplementation(libs.assertK)
     testImplementation(libs.junit5Api)
+    testImplementation(libs.junitJupiter)
+    testImplementation(libs.webServer)
+    testImplementation(libs.coroutine.test)
     testRuntimeOnly(libs.junit5Engine)
 }

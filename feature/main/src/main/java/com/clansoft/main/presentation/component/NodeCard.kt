@@ -54,6 +54,11 @@ fun NodeCard(
             fontSize = 14.sp
         )
         Text(
+            text = "$capacity BTC",
+            color = Color.White,
+            fontSize = 12.sp
+        )
+        Text(
             text = stringResource(R.string.number_of_channels, node.channels),
             color = Color.White,
             fontSize = 12.sp
@@ -63,11 +68,6 @@ fun NodeCard(
                 append(if (node.city != null) (node.city.ptBR ?: node.city.en) + ", " else "")
                 append(node.country?.ptBR ?: node.country?.en ?: "")
             },
-            color = Color.White,
-            fontSize = 12.sp
-        )
-        Text(
-            text = "$capacity BTC",
             color = Color.White,
             fontSize = 12.sp
         )

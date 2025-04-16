@@ -9,8 +9,10 @@ import com.clansoft.main.domain.usecase.ConvertFromUnix
 import com.clansoft.main.domain.usecase.ConvertToBitcoin
 import com.clansoft.main.domain.usecase.GetNodes
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -24,8 +26,10 @@ class MainViewModel @Inject constructor(
     private val _state: MutableStateFlow<MainState> = MutableStateFlow(MainState(
         nodeList = emptyList()
     ))
-
     val state: StateFlow<MainState> = _state
+
+    private val _eventFlow = MutableSharedFlow<MainUIEvent>()
+    val eventFlow = _eventFlow.asSharedFlow()
 
     init {
         getNodes()

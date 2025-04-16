@@ -1,10 +1,9 @@
 package com.clansoft.network.data.datasource
 
-import android.util.Log
-import javax.inject.Inject
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import retrofit2.Response
+import javax.inject.Inject
 
 class NetworkDataSourceImpl @Inject constructor() : NetworkDataSource {
     override suspend fun <T> call(

@@ -17,6 +17,8 @@ assertK = "0.26.1"
 junit5 = "5.10.2"
 mockk = "1.13.10"
 junit5Plugin = "1.9.3.0"
+webServer = "4.9.3"
+coroutineTest = "1.10.2"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -47,6 +49,8 @@ junit5Api = { group = "org.junit.jupiter", name = "junit-jupiter-api", version.r
 mockk = { group = "io.mockk", name = "mockk", version.ref = "mockk" }
 junit5Engine = { group = "org.junit.jupiter", name = "junit-jupiter-engine", version.ref = "junit5" }
 junitJupiter = { group = "org.junit.jupiter", name = "junit-jupiter", version.ref = "junit5"}
+webServer = { group = "com.squareup.okhttp3", name = "mockwebserver", version.ref = "webServer" }
+coroutine-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "coroutineTest" }
 
 # Retrofit
 retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }

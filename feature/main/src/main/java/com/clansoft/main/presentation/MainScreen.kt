@@ -35,7 +35,7 @@ fun MainScreen(viewModel: MainViewModel = hiltViewModel()) {
                 .fillMaxSize()
                 .background(Blue800)
                 .padding(padding)
-                .padding(horizontal = 8.dp),
+                .padding(16.dp),
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
             Text(
@@ -44,7 +44,7 @@ fun MainScreen(viewModel: MainViewModel = hiltViewModel()) {
                 color = Color.White
             )
 
-            LazyColumn(verticalArrangement = Arrangement.spacedBy(4.dp)) {
+            LazyColumn(verticalArrangement = Arrangement.spacedBy(8.dp)) {
                 items(state.nodeList) { node ->
                     NodeCard(
                         viewModel = viewModel,
