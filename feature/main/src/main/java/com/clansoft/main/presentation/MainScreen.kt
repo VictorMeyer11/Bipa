@@ -1,5 +1,7 @@
 package com.clansoft.main.presentation
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -22,6 +24,7 @@ import com.clansoft.main.R
 import com.clansoft.main.presentation.component.NodeCard
 import com.clansoft.ui.theme.Blue800
 
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun MainScreen(viewModel: MainViewModel = hiltViewModel()) {
     val state by viewModel.state.collectAsStateWithLifecycle()

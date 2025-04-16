@@ -30,6 +30,8 @@ fun NodeCard(
     viewModel: MainViewModel,
     node: Node
 ) {
+    val capacity = viewModel.convertToBitcoin(node.capacity) ?: "-"
+
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -65,14 +67,14 @@ fun NodeCard(
             fontSize = 12.sp
         )
         Text(
-            text = "${viewModel.convertToBitcoin(node.capacity)} BTC",
+            text = "$capacity BTC",
             color = Color.White,
             fontSize = 12.sp
         )
         Text(
             text = stringResource(
                 R.string.first_seen_at,
-                viewModel.convertFromUnix(node.firstSeen) ?: ""
+                viewModel.convertFromUnix(node.firstSeen) ?: "-"
             ),
             color = Color.White,
             fontSize = 12.sp
@@ -80,7 +82,7 @@ fun NodeCard(
         Text(
             text = stringResource(
                 R.string.updated_at,
-                viewModel.convertFromUnix(node.updatedAt) ?: ""
+                viewModel.convertFromUnix(node.updatedAt) ?: "-"
             ),
             color = Color.White,
             fontSize = 12.sp

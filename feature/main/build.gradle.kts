@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.hiltAndroid)
     alias(libs.plugins.kotlin.compose)
+    alias(libs.plugins.junit5)
     kotlin("kapt")
 }
 
@@ -27,11 +28,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_21
+        targetCompatibility = JavaVersion.VERSION_21
     }
     kotlinOptions {
-        jvmTarget = "11"
+        jvmTarget = project.property("jvmTarget").toString()
     }
     buildFeatures {
         compose = true
@@ -67,4 +68,10 @@ dependencies {
     // Retrofit
     implementation(libs.retrofit)
     implementation(libs.retrofit.converter.gson)
+
+    // Tests
+    testImplementation(libs.mockk)
+    testImplementation(libs.assertK)
+    testImplementation(libs.junit5Api)
+    testRuntimeOnly(libs.junit5Engine)
 }

@@ -13,6 +13,10 @@ hilt-navigation-compose = "1.2.0"
 appcompat = "1.7.0"
 material = "1.12.0"
 retrofit = "2.11.0"
+assertK = "0.26.1"
+junit5 = "5.10.2"
+mockk = "1.13.10"
+junit5Plugin = "1.9.3.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -37,6 +41,13 @@ dagger-hilt = { group = "com.google.dagger", name = "hilt-android", version.ref 
 dagger-hilt-compiler = { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "hilt" }
 hilt-navigation-compose = { group = "androidx.hilt", name = "hilt-navigation-compose", version.ref = "hilt-navigation-compose" }
 
+# Testing
+assertK = { group = "com.willowtreeapps.assertk", name = "assertk", version.ref = "assertK" }
+junit5Api = { group = "org.junit.jupiter", name = "junit-jupiter-api", version.ref = "junit5" }
+mockk = { group = "io.mockk", name = "mockk", version.ref = "mockk" }
+junit5Engine = { group = "org.junit.jupiter", name = "junit-jupiter-engine", version.ref = "junit5" }
+junitJupiter = { group = "org.junit.jupiter", name = "junit-jupiter", version.ref = "junit5"}
+
 # Retrofit
 retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
 retrofit-converter-gson = { group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "retrofit" }
@@ -47,3 +58,4 @@ kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 android-library = { id = "com.android.library", version.ref = "agp" }
 hiltAndroid = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
+junit5 = { id = "de.mannodermaus.android-junit5", version.ref = "junit5Plugin" }

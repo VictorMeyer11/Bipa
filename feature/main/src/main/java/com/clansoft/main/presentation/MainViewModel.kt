@@ -1,6 +1,5 @@
 package com.clansoft.main.presentation
 
-import android.content.Context
 import android.os.Build
 import android.util.Log
 import androidx.annotation.RequiresApi
@@ -10,17 +9,14 @@ import com.clansoft.main.domain.usecase.ConvertFromUnix
 import com.clansoft.main.domain.usecase.ConvertToBitcoin
 import com.clansoft.main.domain.usecase.GetNodes
 import dagger.hilt.android.lifecycle.HiltViewModel
-import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import java.util.Date
 import javax.inject.Inject
 
 @HiltViewModel
 class MainViewModel @Inject constructor(
-    @ApplicationContext private val context: Context,
     private val getNodesUseCase: GetNodes,
     private val convertToBitcoinUseCase: ConvertToBitcoin,
     private val convertFromUnixUseCase: ConvertFromUnix
@@ -35,10 +31,10 @@ class MainViewModel @Inject constructor(
         getNodes()
     }
 
-    fun convertToBitcoin(valueInSat: Long) : Double = convertToBitcoinUseCase(valueInSat)
+    fun convertToBitcoin(valueInSat: Long) : Double? = convertToBitcoinUseCase(valueInSat)
 
     @RequiresApi(Build.VERSION_CODES.O)
-    fun convertFromUnix(unix: Int) : String? = convertFromUnixUseCase(context, unix)
+    fun convertFromUnix(unix: Int) : String? = convertFromUnixUseCase(unix)
 
     private fun getNodes() {
         viewModelScope.launch {
