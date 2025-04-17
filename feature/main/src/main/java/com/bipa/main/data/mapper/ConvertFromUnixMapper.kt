@@ -14,15 +14,14 @@ class ConvertFromUnixMapper @Inject constructor() {
     fun map(unix: Int): String? {
         if (unix < 0) { return null }
 
-        val zoneId = ZoneId.of(ZONE_ID)
-        val instant = Instant.ofEpochSecond(unix.toLong())
-
         val currentTime = Instant.now().epochSecond
         val oneDayInSeconds = 1.days.inWholeSeconds
         if (unix > currentTime + oneDayInSeconds) {
             return null
         }
 
+        val zoneId = ZoneId.of(ZONE_ID)
+        val instant = Instant.ofEpochSecond(unix.toLong())
         val formatter = DateTimeFormatter.ofPattern(
             DATE_PATTERN,
             Locale.getDefault()

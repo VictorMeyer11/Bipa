@@ -7,27 +7,29 @@ import com.bipa.main.domain.model.Node
 import javax.inject.Inject
 
 class NodeMapper @Inject constructor(
-    private val cityMapper: CityMapper,
-    private val countryMapper: CountryMapper,
     private val convertToBitcoinMapper: ConvertToBitcoinMapper,
     private val convertFromUnixMapper: ConvertFromUnixMapper
 ) {
     @RequiresApi(Build.VERSION_CODES.O)
-    fun map(nodeDto: NodeDto): Node {
-        val cityName = nodeDto.city?.let(cityMapper::map)?.cityName ?: ""
-        val countryCode = nodeDto.country?.let(countryMapper::map)?.countryCode ?: ""
+    fun map(nodeDto: NodeDto): Node = nodeDto.run {
+        val cityName = city?.ptBR ?: city?.en ?: ""
+        val countryCode = country?.ptBR ?: country?.en ?: ""
 
         return Node(
-            alias = nodeDto.alias,
-            capacity = convertToBitcoinMapper.map(nodeDto.capacity) ?: 0.0,
-            channels = nodeDto.channels,
+            alias = alias,
+            capacity = convertToBitcoinMapper.map(capacity) ?: 0.0,
+            channels = channels,
             locationName = buildString {
                 append(if (cityName.isNotEmpty()) "$cityName, " else "")
-                append(countryCode.ifEmpty { "" })
+                append(countryCode)
             },
-            firstSeen = convertFromUnixMapper.map(nodeDto.firstSeen) ?: "-",
-            publicKey = nodeDto.publicKey,
-            updatedAt = convertFromUnixMapper.map(nodeDto.updatedAt) ?: "-"
+            firstSeen = convertFromUnixMapper.map(firstSeen) ?: HYPHEN,
+            publicKey = publicKey,
+            updatedAt = convertFromUnixMapper.map(updatedAt) ?: HYPHEN,
         )
+    }
+
+    companion object {
+        private const val HYPHEN = "-"
     }
 }

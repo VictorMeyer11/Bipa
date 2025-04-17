@@ -23,20 +23,16 @@ class MainViewModel @Inject constructor(
     ))
     val state: StateFlow<MainState> = _state
 
-    private val _eventFlow = MutableSharedFlow<MainUIEvent>()
+    private val _eventFlow = MutableSharedFlow<Unit>()
     val eventFlow = _eventFlow.asSharedFlow()
 
     init {
         getNodes()
     }
 
-    fun onEvent(event: MainUIEvent) {
-        when(event) {
-            is MainUIEvent.Refresh -> {
-                _state.update { it.copy(isRefreshing = true) }
-                getNodes()
-            }
-        }
+    fun refresh() {
+        _state.update { it.copy(isRefreshing = true) }
+        getNodes()
     }
 
     private fun getNodes() {
@@ -47,7 +43,7 @@ class MainViewModel @Inject constructor(
                     _state.update { it.copy(nodeList = result) }
                 }
                 .onFailure {
-                    _eventFlow.emit(MainUIEvent.ShowSnackBar("Something went wrong"))
+                    _eventFlow.emit(Unit)
                 }
             _state.update { it.copy(isLoading = false, isRefreshing = false) }
         }
