@@ -1,69 +1,155 @@
-# Node List - Lightning Network Node Explorer
+# Bipa - Lightning Network Node Explorer
 
-## Build tools & versions used
-- **Android Studio:** Arctic Fox or newer
-- **Kotlin:** 2.0.0
-- **Gradle:** 8.0
-- **Minimum SDK:** 24
-- **Target SDK:** 35
-- **JVM Target:** 11
-- **Key Libraries:**
-  - Jetpack Compose for UI
-  - Hilt for dependency injection
-  - Retrofit for networking
-  - Kotlin Coroutines for asynchronous operations
-  - Material Design 3 for UI components
+A modern Android application for exploring Lightning Network nodes, built with Jetpack Compose and Clean Architecture principles.
 
-## Steps to run the app
-1. Clone the repository
-2. Open the project in Android Studio
-3. Sync Gradle files
-4. Connect an Android device or start an emulator
-5. Click the "Run" button in Android Studio
+## Overview
 
-## Running Unit Tests
+Bipa is an Android application that displays information about Lightning Network nodes, including their connectivity rankings, capacity, channels, and location data. The app fetches real-time data from the Mempool.space API and presents it in a clean, user-friendly interface.
+
+## Architecture
+
+This project follows **Clean Architecture** principles with a modular structure:
+
+- **Presentation Layer**: Jetpack Compose UI components and ViewModels
+- **Domain Layer**: Business logic, use cases, and domain models
+- **Data Layer**: API services, data sources, repositories, and DTOs
+
+### Module Structure
+
+```
+Bipa/
+├── app/                    # Main application module
+├── core/
+│   ├── activity/          # Core activity components
+│   └── network/           # Network configuration and data sources
+├── feature/
+│   └── main/              # Main feature module (node listing)
+└── ui/                    # Shared UI components and themes
+```
+
+## Tech Stack
+
+### Core Technologies
+- **Kotlin** 2.0.0
+- **Android Gradle Plugin** 8.8.2
+- **Gradle** 8.0+
+
+### Libraries & Frameworks
+- **Jetpack Compose** - Modern declarative UI framework
+- **Material Design 3** - Material Design components
+- **Hilt** - Dependency injection
+- **Retrofit** - Type-safe HTTP client
+- **Gson** - JSON serialization
+- **Kotlin Coroutines** - Asynchronous programming
+- **Lifecycle Components** - Android lifecycle-aware components
+
+### Testing
+- **JUnit 5** - Unit testing framework
+- **MockK** - Mocking library for Kotlin
+- **AssertK** - Fluent assertions for Kotlin
+- **MockWebServer** - HTTP server for testing network calls
+- **Coroutines Test** - Testing utilities for coroutines
+
+## Requirements
+
+- **Android Studio**: Arctic Fox or newer
+- **Minimum SDK**: 24 (Android 7.0)
+- **Target SDK**: 35
+- **JVM Target**: 11
+- **Kotlin**: 2.0.0
+
+## Getting Started
+
+### Prerequisites
+
+1. Clone the repository:
+   ```bash
+   git clone <repository-url>
+   cd Bipa
+   ```
+
+2. Ensure you have Android Studio installed with the required SDK versions.
+
+### Setup
+
 1. Open the project in Android Studio
-2. Navigate to the test directory (feature/main/kotlin + java)
-3. Right-click on the test file or directory you want to run
-4. Select "Run 'Tests in [test name]'"
-5. Alternatively, you can run all tests by:
-   - Right-clicking on the 'test' folder
-   - Selecting "Run 'Tests in 'folder name''"
-   - Or using the command line: `./gradlew test`
+2. Sync Gradle files (Android Studio will prompt you, or use `File > Sync Project with Gradle Files`)
+3. Wait for Gradle to download dependencies and build the project
 
-## What areas of the app did you focus on?
-- **Clean Architecture Implementation:** Structured the app with clear separation between data, domain, and presentation layers
-- **UI Design:** Created an interface using Jetpack Compose and Material Design 3
-- **Data Handling:** Implemented efficient data fetching and processing
-- **User Experience:** Focused on responsive UI with proper error handling
-- **Code Organization:** Maintained a modular structure with feature-based architecture
+### Running the App
 
-## What was the reason for your focus? What problems were you trying to solve?
-The primary focus was on creating a user-friendly application that effectively displays the data in an accessible format. The main problems addressed include:
+1. Connect an Android device via USB or start an Android emulator
+2. Click the "Run" button in Android Studio (or press `Shift + F10`)
+3. Select your target device
+4. The app will build and launch on your device
 
-- **Data readability:** Making the presentation of the node information quick and simple to read
-- **Reliability:** Implementing proper error handling and data validation
-- **Maintainability:** Creating a codebase that follows best practices and is easy to extend
+### Building from Command Line
 
-## How long did you spend on this project?
-The project was developed over approximately 2-3 days, with focused work on:
-- Day 1: Project setup, architecture design, and basic UI implementation
-- Day 2: Data layer implementation, API integration, and core functionality
-- Day 3: UI refinement, unit tests, error handling, and final testing
+```bash
+# Build debug APK
+./gradlew assembleDebug
 
-## Did you make any trade-offs for this project? What would you have done differently with more time?
-**Trade-offs made:**
-- Simplified some UI elements to focus on core functionality
-- Limited error handling to focus on the main user flow
+# Build release APK
+./gradlew assembleRelease
 
-**With more time, I would have:**
-- Implemented more comprehensive unit and UI tests
-- Implemented offline caching for better performance
+# Install on connected device
+./gradlew installDebug
+```
 
-## What do you think is the weakest part of your project?
-The weakest aspects of the project are:
+## Testing
 
-1. **Limited Testing:** The project lacks comprehensive test coverage, which could lead to potential issues in edge cases
-2. **Basic Error Handling:** While basic error handling is implemented, more robust error recovery mechanisms could be added
-3. **Limited Offline Support:** The app currently requires an internet connection to function
-4. **UI Refinements:** Some UI elements could benefit from more polish and attention to detail
+### Running Unit Tests
+
+**In Android Studio:**
+1. Navigate to the test directory (`feature/main/src/test`)
+2. Right-click on the test file or directory
+3. Select "Run 'Tests in [test name]'"
+4. Or right-click on the `test` folder and select "Run 'Tests in 'test''"
+
+**From Command Line:**
+```bash
+# Run all unit tests
+./gradlew test
+
+# Run tests for a specific module
+./gradlew :feature:main:test
+```
+
+### Running Instrumented Tests
+
+```bash
+# Run all instrumented tests
+./gradlew connectedAndroidTest
+```
+
+## Project Structure
+
+```
+feature/main/
+├── data/
+│   ├── api/              # Retrofit API interfaces
+│   ├── datasource/       # Data source implementations
+│   ├── dto/              # Data Transfer Objects
+│   ├── mapper/           # Data mappers (DTO to Domain)
+│   └── repository/       # Repository implementations
+├── domain/
+│   ├── model/            # Domain models
+│   ├── repository/       # Repository interfaces
+│   └── usecase/          # Business logic use cases
+└── presentation/
+    ├── component/        # Reusable UI components
+    ├── MainScreen.kt     # Main screen composable
+    ├── MainViewModel.kt  # ViewModel
+    └── MainState.kt      # UI state models
+```
+
+## Configuration
+
+### API Configuration
+
+The app uses the Mempool.space API. The base URL is configured in:
+```
+core/network/src/main/java/com/bipa/network/di/RetrofitModule.kt
+```
+
+Current base URL: `https://mempool.space/api/v1/`
